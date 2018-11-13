@@ -59,8 +59,8 @@
 				19C4A67F2187746300FF8E35 /* ListViewController.swift */,
 				19C4A68E2188CC0D00FF8E35 /* ListTableViewController.swift */,
 				19C4A6902188CC5B00FF8E35 /* ListItem.swift */,
-				19C4A6942188CEAB00FF8E35 /* ListItemDetailViewController.swift */,
 				19C4A6922188CCF300FF8E35 /* ListItemTableViewCell.swift */,
+				19C4A6942188CEAB00FF8E35 /* ListItemDetailViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";

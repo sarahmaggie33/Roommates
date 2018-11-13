@@ -60,6 +60,7 @@ class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITex
             }
             if item.date == nil && selectedDate.text != "None" {
                 item.date = datePicker.date
+                print("setting item.date")
             }
             item.isCompleted = completedSwitch.isOn
         }
@@ -92,7 +93,7 @@ class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITex
         return false
     }
     
-    // MARK: - Text Field
+    // MARK: - Text View
     func textViewDidBeginEditing(_ textView: UITextView) {
         if notesTextView.text == "Item Notes" {
             notesTextView.text = ""

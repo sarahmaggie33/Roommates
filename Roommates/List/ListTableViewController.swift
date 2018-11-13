@@ -27,12 +27,9 @@ class ListTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    @IBAction func addToDoListItem() {
+    @IBAction func addListItem() {
         listItems.insert(ListItem(), at: 0)
         tableView.insertRows(at: [IndexPath(row:0, section:0)], with: UITableView.RowAnimation.top)
-    }
-    
-    @IBAction func editToDoListItem() {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,6 +48,7 @@ class ListTableViewController: UITableViewController {
         if let listItemCell = cell as? ListItemTableViewCell {
             let listItem = listItems[indexPath.row]
             listItemCell.listItem = listItem
+            print(listItem.title)
             listItemCell.titleTextField.text = listItem.title
             if listItem.isCompleted {
                 listItemCell.accessoryType = UITableViewCell.AccessoryType.checkmark
@@ -63,13 +61,11 @@ class ListTableViewController: UITableViewController {
     }
     
     
-    
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
-     return true
+        return true
      }
-    
     
     
      // Override to support editing the table view.
@@ -98,7 +94,7 @@ class ListTableViewController: UITableViewController {
      // Override to support conditional rearranging of the table view.
      override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the item to be re-orderable.
-     return true
+        return true
      }
  
     
