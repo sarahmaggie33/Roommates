@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19232B85219E07D5008ED6D6 /* BillsTableViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B84219E07D5008ED6D6 /* BillsTableViewController2.swift */; };
+		19232B85219E07D5008ED6D6 /* BillsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B84219E07D5008ED6D6 /* BillsTableViewController.swift */; };
 		19232B87219E0892008ED6D6 /* BillItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B86219E0892008ED6D6 /* BillItem.swift */; };
 		19232B89219E0A29008ED6D6 /* BillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B88219E0A29008ED6D6 /* BillDetailViewController.swift */; };
 		19232B8B219E415D008ED6D6 /* BillsAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B8A219E415D008ED6D6 /* BillsAddEditViewController.swift */; };
 		19232B8D219E417C008ED6D6 /* BillsAddEditDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B8C219E417C008ED6D6 /* BillsAddEditDelegate.swift */; };
+		19800FAE21ADBE5000453CDD /* AddCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FAD21ADBE5000453CDD /* AddCalendarViewController.swift */; };
+		19800FB021ADBE9900453CDD /* CalendarAddedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FAF21ADBE9900453CDD /* CalendarAddedDelegate.swift */; };
+		19800FB221ADC5AD00453CDD /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FB121ADC5AD00453CDD /* EventsViewController.swift */; };
+		19800FB421ADC5D600453CDD /* EventAddedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FB321ADC5D600453CDD /* EventAddedDelegate.swift */; };
+		19800FB621ADC61400453CDD /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FB521ADC61400453CDD /* AddEventViewController.swift */; };
+		19800FB821ADC7CF00453CDD /* SegueIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FB721ADC7CF00453CDD /* SegueIdentifiers.swift */; };
 		19C4A66C218662D400FF8E35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66B218662D400FF8E35 /* AppDelegate.swift */; };
-		19C4A66E218662D400FF8E35 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66D218662D400FF8E35 /* CalendarViewController.swift */; };
-		19C4A670218662D400FF8E35 /* BillsViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66F218662D400FF8E35 /* BillsViewController1.swift */; };
+		19C4A66E218662D400FF8E35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66D218662D400FF8E35 /* ViewController.swift */; };
+		19C4A670218662D400FF8E35 /* BillsOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66F218662D400FF8E35 /* BillsOptionsViewController.swift */; };
 		19C4A673218662D400FF8E35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C4A671218662D400FF8E35 /* Main.storyboard */; };
 		19C4A675218662D700FF8E35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19C4A674218662D700FF8E35 /* Assets.xcassets */; };
 		19C4A678218662D700FF8E35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C4A676218662D700FF8E35 /* LaunchScreen.storyboard */; };
@@ -29,15 +35,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		19232B84219E07D5008ED6D6 /* BillsTableViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsTableViewController2.swift; sourceTree = "<group>"; };
+		19232B84219E07D5008ED6D6 /* BillsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsTableViewController.swift; sourceTree = "<group>"; };
 		19232B86219E0892008ED6D6 /* BillItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItem.swift; sourceTree = "<group>"; };
 		19232B88219E0A29008ED6D6 /* BillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailViewController.swift; sourceTree = "<group>"; };
 		19232B8A219E415D008ED6D6 /* BillsAddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsAddEditViewController.swift; sourceTree = "<group>"; };
 		19232B8C219E417C008ED6D6 /* BillsAddEditDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsAddEditDelegate.swift; sourceTree = "<group>"; };
+		19800FAD21ADBE5000453CDD /* AddCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCalendarViewController.swift; sourceTree = "<group>"; };
+		19800FAF21ADBE9900453CDD /* CalendarAddedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddedDelegate.swift; sourceTree = "<group>"; };
+		19800FB121ADC5AD00453CDD /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		19800FB321ADC5D600453CDD /* EventAddedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAddedDelegate.swift; sourceTree = "<group>"; };
+		19800FB521ADC61400453CDD /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		19800FB721ADC7CF00453CDD /* SegueIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueIdentifiers.swift; sourceTree = "<group>"; };
 		19C4A668218662D400FF8E35 /* Roommates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roommates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C4A66B218662D400FF8E35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		19C4A66D218662D400FF8E35 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		19C4A66F218662D400FF8E35 /* BillsViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsViewController1.swift; sourceTree = "<group>"; };
+		19C4A66D218662D400FF8E35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		19C4A66F218662D400FF8E35 /* BillsOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsOptionsViewController.swift; sourceTree = "<group>"; };
 		19C4A672218662D400FF8E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		19C4A674218662D700FF8E35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19C4A677218662D700FF8E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,8 +90,8 @@
 		198F696D21921009002F4DE9 /* Bills */ = {
 			isa = PBXGroup;
 			children = (
-				19C4A66F218662D400FF8E35 /* BillsViewController1.swift */,
-				19232B84219E07D5008ED6D6 /* BillsTableViewController2.swift */,
+				19C4A66F218662D400FF8E35 /* BillsOptionsViewController.swift */,
+				19232B84219E07D5008ED6D6 /* BillsTableViewController.swift */,
 				19232B86219E0892008ED6D6 /* BillItem.swift */,
 				19232B88219E0A29008ED6D6 /* BillDetailViewController.swift */,
 				19232B8A219E415D008ED6D6 /* BillsAddEditViewController.swift */,
@@ -99,7 +111,13 @@
 		198F696F2192101D002F4DE9 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				19C4A66D218662D400FF8E35 /* CalendarViewController.swift */,
+				19C4A66D218662D400FF8E35 /* ViewController.swift */,
+				19800FAD21ADBE5000453CDD /* AddCalendarViewController.swift */,
+				19800FAF21ADBE9900453CDD /* CalendarAddedDelegate.swift */,
+				19800FB121ADC5AD00453CDD /* EventsViewController.swift */,
+				19800FB321ADC5D600453CDD /* EventAddedDelegate.swift */,
+				19800FB521ADC61400453CDD /* AddEventViewController.swift */,
+				19800FB721ADC7CF00453CDD /* SegueIdentifiers.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -219,20 +237,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19800FB821ADC7CF00453CDD /* SegueIdentifiers.swift in Sources */,
 				19232B8D219E417C008ED6D6 /* BillsAddEditDelegate.swift in Sources */,
-				19C4A670218662D400FF8E35 /* BillsViewController1.swift in Sources */,
+				19C4A670218662D400FF8E35 /* BillsOptionsViewController.swift in Sources */,
 				19C4A6912188CC5B00FF8E35 /* ListItem.swift in Sources */,
 				19232B8B219E415D008ED6D6 /* BillsAddEditViewController.swift in Sources */,
 				19232B89219E0A29008ED6D6 /* BillDetailViewController.swift in Sources */,
 				19232B87219E0892008ED6D6 /* BillItem.swift in Sources */,
 				19C4A66C218662D400FF8E35 /* AppDelegate.swift in Sources */,
-				19232B85219E07D5008ED6D6 /* BillsTableViewController2.swift in Sources */,
+				19232B85219E07D5008ED6D6 /* BillsTableViewController.swift in Sources */,
 				19C4A6802187746300FF8E35 /* ListViewController.swift in Sources */,
 				19C4A6932188CCF300FF8E35 /* ListItemTableViewCell.swift in Sources */,
+				19800FB621ADC61400453CDD /* AddEventViewController.swift in Sources */,
+				19800FB221ADC5AD00453CDD /* EventsViewController.swift in Sources */,
 				19C4A6952188CEAB00FF8E35 /* ListItemDetailViewController.swift in Sources */,
 				19C4A6822187747500FF8E35 /* ChatViewController.swift in Sources */,
+				19800FAE21ADBE5000453CDD /* AddCalendarViewController.swift in Sources */,
+				19800FB421ADC5D600453CDD /* EventAddedDelegate.swift in Sources */,
+				19800FB021ADBE9900453CDD /* CalendarAddedDelegate.swift in Sources */,
 				19C4A68F2188CC0D00FF8E35 /* ListTableViewController.swift in Sources */,
-				19C4A66E218662D400FF8E35 /* CalendarViewController.swift in Sources */,
+				19C4A66E218662D400FF8E35 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

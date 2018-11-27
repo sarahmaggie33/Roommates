@@ -8,8 +8,8 @@
 
 import UIKit
 
-class BillsTableViewController2: UITableViewController {
-
+class BillsTableViewController: UITableViewController {
+    @IBOutlet weak var navigationBar: UINavigationBar!
     var billItems:[BillItem] = []
 
     override func viewDidLoad() {
@@ -40,11 +40,11 @@ class BillsTableViewController2: UITableViewController {
         return billItems.count
     }
 
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "billCell", for: indexPath)
 
         // Configure the cell...
-
         return cell
     }
     
@@ -56,7 +56,6 @@ class BillsTableViewController2: UITableViewController {
         return true
     }
     
-
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -70,13 +69,11 @@ class BillsTableViewController2: UITableViewController {
         }    
     }
     
-
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
-    
 
     
     // Override to support conditional rearranging of the table view.
