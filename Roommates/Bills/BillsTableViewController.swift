@@ -8,10 +8,12 @@
 
 import UIKit
 
-class BillsTableViewController: UITableViewController {
+class BillsTableViewController: UITableViewController, ClassBTVDelegate {
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
     var billItems:[BillItem] = []
-
+    weak var delegate: ClassBTVDelegate?
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,22 +22,25 @@ class BillsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.reloadData()
+    }
+    
+    func saveToTableView(_ bill: BillItem) {
+        billItems.append(bill)
+        print("Saved to table view")
     }
 
     @IBAction func addBill() {
         billItems.insert(BillItem(), at: 0)
         tableView.insertRows(at: [IndexPath(row:0, section:0)], with: UITableView.RowAnimation.top)
     }
-    
-    @IBAction func deleteBill() {
-    }
-    
-    // MARK: - Table view data source
 
+    // MARK: - Table view data source
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return billItems.count
     }
@@ -45,10 +50,10 @@ class BillsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "billCell", for: indexPath)
 
         // Configure the cell...
+        let bill = billItems[indexPath.row]
+        cell.textLabel!.text = bill.title
         return cell
     }
-    
-
 
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -81,7 +86,6 @@ class BillsTableViewController: UITableViewController {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    
 
     
     // MARK: - Navigation
@@ -95,6 +99,10 @@ class BillsTableViewController: UITableViewController {
         if segue.identifier == "showDetailSegue" {
             if let destinationVC = segue.destination as? BillDetailViewController {
                 destinationVC.bill = billItems[tableView.indexPathForSelectedRow!.row]
+                if let cell = sender as? UITableViewCell {
+                    destinationVC.navigationItem.title = cell.textLabel!.text!
+                }
+                destinationVC.billsTableViewDelegate = self
             }
         }
     }

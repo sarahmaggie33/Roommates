@@ -28,4 +28,11 @@ class BillItem: NSObject {
         amount = 0.00
         isPaid = false
     }
+    
+    init(title:String, payToPerson:String, amount:Double, isPaid:Bool) {
+        self.title = title
+        self.payToPerson = payToPerson
+        self.amount = amount
+        self.isPaid = isPaid
+    }
 }

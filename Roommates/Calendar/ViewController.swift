@@ -20,7 +20,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         checkCalendarAuthorizationStatus()
         // Do any additional setup after loading the view, typically from a nib.
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,7 +80,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let calendars = self.calendars {
             return calendars.count
         }
-        
         return 0
     }
     
@@ -90,8 +88,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell")!
         
         if let calendars = self.calendars {
-            let calendarName = calendars[(indexPath as NSIndexPath).row].title
+            var calendarName = calendars[(indexPath as NSIndexPath).row].title
+//            calendarName = "pizza"
             cell.textLabel?.text = calendarName
+            print(calendarName)
         } else {
             cell.textLabel?.text = "Unknown Calendar Name"
         }

@@ -18,12 +18,12 @@ class BillsAddEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var dueDate:UILabel!
     @IBOutlet weak var navigationBar:UINavigationBar!
     weak var bill:BillItem?
-    var delegate:BillsAddEditDelegate?
+    var addEditDelegate:BillsAddEditDelegate?
+    var billsTableViewDelegate:ClassBTVDelegate?
     var newBill:BillItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if let bill = bill { //the bill exists; edit bill
             navigationBar.topItem?.title = "Edit Bill"
             whatsItFor.text = bill.title
@@ -38,10 +38,31 @@ class BillsAddEditViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func cancelTapped() {
-        delegate?.cancelAddEditBill()
+    @IBAction func screenTapped() {
+        view.endEditing(true)
+        datePicker.isHidden = true
     }
     
+    @IBAction func datePickerLabelTapped() {
+        if (!datePicker.isHidden) {
+            screenTapped()
+        } else {
+            datePicker.isHidden = false
+        }
+    }
+    
+    @IBAction func datePickerChanged() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d 'at' h:mm a"
+        let strDate = dateFormatter.string(from: datePicker.date)
+        dueDate.text = strDate
+        dueDate.textColor = UIColor.black
+    }
+    
+    @IBAction func cancelTapped() {
+        addEditDelegate?.cancelAddEditBill()
+    }
+
     @IBAction func saveTapped() {
         if let bill = bill { // edit
             bill.title = whatsItFor.text!
@@ -53,17 +74,17 @@ class BillsAddEditViewController: UIViewController, UITextFieldDelegate {
             let date = dateFormatter.date(from: dueDate!.text!)
             bill.dueDate = date
         } else { // add
-            newBill!.title = whatsItFor.text!
-            newBill!.payToPerson = payToPerson.text!
-            newBill!.isPaid = isPaid.isOn
-            newBill!.amount = Double(amount.text!)!
+            newBill = BillItem(title: whatsItFor.text!, payToPerson: payToPerson.text!,
+                amount: Double(amount.text!)!,
+                isPaid: isPaid.isOn)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let date = dateFormatter.date(from: dueDate!.text!)
             newBill!.dueDate = date
             bill = newBill
         }
-        delegate?.saveAddEditBill(bill!)
+        addEditDelegate?.saveAddEditBill(bill!)
+        self.billsTableViewDelegate?.saveToTableView(bill!)
     }
     
     // MARK: - UITextFieldDelegate

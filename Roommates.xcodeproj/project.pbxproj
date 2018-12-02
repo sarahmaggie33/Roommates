@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190BD01F21B3462400BC9C2E /* ClassBTVDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190BD01E21B3462400BC9C2E /* ClassBTVDelegate.swift */; };
 		19232B85219E07D5008ED6D6 /* BillsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B84219E07D5008ED6D6 /* BillsTableViewController.swift */; };
 		19232B87219E0892008ED6D6 /* BillItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B86219E0892008ED6D6 /* BillItem.swift */; };
 		19232B89219E0A29008ED6D6 /* BillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B88219E0A29008ED6D6 /* BillDetailViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		190BD01E21B3462400BC9C2E /* ClassBTVDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBTVDelegate.swift; sourceTree = "<group>"; };
 		19232B84219E07D5008ED6D6 /* BillsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsTableViewController.swift; sourceTree = "<group>"; };
 		19232B86219E0892008ED6D6 /* BillItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItem.swift; sourceTree = "<group>"; };
 		19232B88219E0A29008ED6D6 /* BillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				19232B88219E0A29008ED6D6 /* BillDetailViewController.swift */,
 				19232B8A219E415D008ED6D6 /* BillsAddEditViewController.swift */,
 				19232B8C219E417C008ED6D6 /* BillsAddEditDelegate.swift */,
+				190BD01E21B3462400BC9C2E /* ClassBTVDelegate.swift */,
 			);
 			path = Bills;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				19232B8D219E417C008ED6D6 /* BillsAddEditDelegate.swift in Sources */,
 				19C4A670218662D400FF8E35 /* BillsOptionsViewController.swift in Sources */,
 				19C4A6912188CC5B00FF8E35 /* ListItem.swift in Sources */,
+				190BD01F21B3462400BC9C2E /* ClassBTVDelegate.swift in Sources */,
 				19232B8B219E415D008ED6D6 /* BillsAddEditViewController.swift in Sources */,
 				19232B89219E0A29008ED6D6 /* BillDetailViewController.swift in Sources */,
 				19232B87219E0892008ED6D6 /* BillItem.swift in Sources */,
