@@ -9,8 +9,19 @@
 import Firebase
 
 struct Constants  {
-    struct refs {
-        static let databaseRoot = Database.database().reference()
-        static let databaseChats = databaseRoot.child("chats")
+    struct NotificationKeys {
+        static let SignedIn = "onSignInCompleted"
+    }
+    
+    struct Segues {
+        static let SignIn = "SignIn"
+        static let FpToSignIn = "FPToSignIn"
+    }
+    
+    struct MessageFields {
+        static let name = "name"
+        static let text = "text"
+        static let photoURL = "photoUrl"
+        static let imageURL = "imageUrl"
     }
 }

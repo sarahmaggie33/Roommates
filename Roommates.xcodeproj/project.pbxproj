@@ -35,8 +35,8 @@
 		19C4A6932188CCF300FF8E35 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A6922188CCF300FF8E35 /* ListItemTableViewCell.swift */; };
 		19C4A6952188CEAB00FF8E35 /* ListItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A6942188CEAB00FF8E35 /* ListItemDetailViewController.swift */; };
 		19D403AA21B3796700C416CA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D403A921B3796700C416CA /* Constants.swift */; };
-		19D403AC21B43C1200C416CA /* ChatSubviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D403AB21B43C1200C416CA /* ChatSubviewController.swift */; };
 		19D403AF21B4429700C416CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D403AE21B4429700C416CA /* LoginViewController.swift */; };
+		19D403B121B4502300C416CA /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D403B021B4502300C416CA /* MeasurementHelper.swift */; };
 		2BC433168AEE26219146C0B6 /* Pods_Roommates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D9F9F0FC5F996A3D05A7E9 /* Pods_Roommates.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,8 +72,8 @@
 		19C4A6922188CCF300FF8E35 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		19C4A6942188CEAB00FF8E35 /* ListItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemDetailViewController.swift; sourceTree = "<group>"; };
 		19D403A921B3796700C416CA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		19D403AB21B43C1200C416CA /* ChatSubviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSubviewController.swift; sourceTree = "<group>"; };
 		19D403AE21B4429700C416CA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		19D403B021B4502300C416CA /* MeasurementHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementHelper.swift; sourceTree = "<group>"; };
 		44B7F1A429DA2A9C673FEDE5 /* Pods-Roommates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roommates.release.xcconfig"; path = "Pods/Target Support Files/Pods-Roommates/Pods-Roommates.release.xcconfig"; sourceTree = "<group>"; };
 		C9D9F9F0FC5F996A3D05A7E9 /* Pods_Roommates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roommates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -120,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				19C4A6812187747500FF8E35 /* ChatViewController.swift */,
-				19D403AB21B43C1200C416CA /* ChatSubviewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -161,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				19C4A66B218662D400FF8E35 /* AppDelegate.swift */,
+				19D403A921B3796700C416CA /* Constants.swift */,
+				19D403B021B4502300C416CA /* MeasurementHelper.swift */,
 				19D403AD21B4403000C416CA /* Login */,
 				198F696F2192101D002F4DE9 /* Calendar */,
 				198F696D21921009002F4DE9 /* Bills */,
@@ -172,7 +173,6 @@
 				19C4A679218662D700FF8E35 /* Info.plist */,
 				1925752C21B35B05009697F9 /* GoogleService-Info.plist */,
 				19C4A68321877F6600FF8E35 /* Images */,
-				19D403A921B3796700C416CA /* Constants.swift */,
 			);
 			path = Roommates;
 			sourceTree = "<group>";
@@ -223,6 +223,7 @@
 				19C4A665218662D400FF8E35 /* Frameworks */,
 				19C4A666218662D400FF8E35 /* Resources */,
 				D6BACF43B4CC824C32DF9ACB /* [CP] Embed Pods Frameworks */,
+				0B24E405554C53E98732C3A5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,6 +284,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0B24E405554C53E98732C3A5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Roommates/Pods-Roommates-resources.sh",
+				"${PODS_ROOT}/FirebaseInvites/Resources/GINInviteResources.bundle",
+				"${PODS_ROOT}/FirebaseInvites/Resources/GPPACLPickerResources.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GINInviteResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GPPACLPickerResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Roommates/Pods-Roommates-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		63328960CF7DC4229D81542B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -314,10 +341,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Roommates/Pods-Roommates-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -325,10 +354,12 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -349,6 +380,7 @@
 				19232B8D219E417C008ED6D6 /* BillsAddEditDelegate.swift in Sources */,
 				19C4A670218662D400FF8E35 /* BillsOptionsViewController.swift in Sources */,
 				19C4A6912188CC5B00FF8E35 /* ListItem.swift in Sources */,
+				19D403B121B4502300C416CA /* MeasurementHelper.swift in Sources */,
 				190BD01F21B3462400BC9C2E /* ClassBTVDelegate.swift in Sources */,
 				19232B8B219E415D008ED6D6 /* BillsAddEditViewController.swift in Sources */,
 				19232B89219E0A29008ED6D6 /* BillDetailViewController.swift in Sources */,
@@ -361,7 +393,6 @@
 				19800FB621ADC61400453CDD /* AddEventViewController.swift in Sources */,
 				19800FB221ADC5AD00453CDD /* EventsViewController.swift in Sources */,
 				19C4A6952188CEAB00FF8E35 /* ListItemDetailViewController.swift in Sources */,
-				19D403AC21B43C1200C416CA /* ChatSubviewController.swift in Sources */,
 				19C4A6822187747500FF8E35 /* ChatViewController.swift in Sources */,
 				19800FAE21ADBE5000453CDD /* AddCalendarViewController.swift in Sources */,
 				19800FB421ADC5D600453CDD /* EventAddedDelegate.swift in Sources */,
