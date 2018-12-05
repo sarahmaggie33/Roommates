@@ -23,13 +23,13 @@ class BillsOptionsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination
         // Pass the selected object to the new view controller.
-        if segue.identifier == "paySomeoneSegue" {
-            if let destinationVC = segue.destination as? BillsTableViewController {
-                destinationVC.navigationItem.title = "Pay Someone"
+        if segue.identifier == "paySomeone" {
+            if let destinationVC = segue.destination as? BillsPaySomeoneTableViewController {
+//                destinationVC.navigationItem.title = "Pay Someone"
             }
-        } else if segue.identifier == "getPaidSegue" {
-            if let destinationVC = segue.destination as? BillsTableViewController {
-                destinationVC.navigationItem.title = "Get Paid"
+        } else if segue.identifier == "getPaid" {
+            if let destinationVC = segue.destination as? BillsGetPaidTableViewController {
+//                destinationVC.navigationItem.title = "Get Paid"
             }
         }
     }

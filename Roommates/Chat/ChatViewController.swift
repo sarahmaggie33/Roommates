@@ -113,32 +113,32 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         Crashlytics.sharedInstance().crash()
     }
     
-    @IBAction func inviteTapped(_ sender: AnyObject) {
-        if let invite = Invites.inviteDialog() {
-            invite.setInviteDelegate(self)
-            
-            // NOTE: You must have the App Store ID set in your developer console project
-            // in order for invitations to successfully be sent.
-            
-            // A message hint for the dialog. Note this manifests differently depending on the
-            // received invitation type. For example, in an email invite this appears as the subject.
-            invite.setMessage("Try this out!\n -\(Auth.auth().currentUser?.displayName ?? "")")
-            // Title for the dialog, this is what the user sees before sending the invites.
-            invite.setTitle("FriendlyChat")
-            invite.setDeepLink("app_url")
-            invite.setCallToActionText("Install!")
-            invite.setCustomImage("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png")
-            invite.open()
-        }
-    }
+//    @IBAction func inviteTapped(_ sender: AnyObject) {
+//        if let invite = Invites.inviteDialog() {
+//            invite.setInviteDelegate(self)
+//
+//            // NOTE: You must have the App Store ID set in your developer console project
+//            // in order for invitations to successfully be sent.
+//
+//            // A message hint for the dialog. Note this manifests differently depending on the
+//            // received invitation type. For example, in an email invite this appears as the subject.
+//            invite.setMessage("Try this out!\n -\(Auth.auth().currentUser?.displayName ?? "")")
+//            // Title for the dialog, this is what the user sees before sending the invites.
+//            invite.setTitle("FriendlyChat")
+//            invite.setDeepLink("app_url")
+//            invite.setCallToActionText("Install!")
+//            invite.setCustomImage("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png")
+//            invite.open()
+//        }
+//    }
     
-    func inviteFinished(withInvitations invitationIds: [String], error: Error?) {
-        if let error = error {
-            print("Failed: \(error.localizedDescription)")
-        } else {
-            print("Invitations sent")
-        }
-    }
+//    func inviteFinished(withInvitations invitationIds: [String], error: Error?) {
+//        if let error = error {
+//            print("Failed: \(error.localizedDescription)")
+//        } else {
+//            print("Invitations sent")
+//        }
+//    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
@@ -273,15 +273,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        picker.dismiss(animated: true, completion:nil)
 //    }
     
-    @IBAction func signOut(_ sender: UIButton) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            dismiss(animated: true, completion: nil)
-        } catch let signOutError as NSError {
-            print ("Error signing out: \(signOutError.localizedDescription)")
-        }
-    }
+//    @IBAction func signOut(_ sender: UIButton) {
+//        let firebaseAuth = Auth.auth()
+//        do {
+//            try firebaseAuth.signOut()
+//            dismiss(animated: true, completion: nil)
+//        } catch let signOutError as NSError {
+//            print ("Error signing out: \(signOutError.localizedDescription)")
+//        }
+//    }
     
     func showAlert(withTitle title: String, message: String) {
         DispatchQueue.main.async {

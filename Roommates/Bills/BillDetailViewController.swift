@@ -8,21 +8,17 @@
 
 import UIKit
 
-class BillDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, BillsAddEditDelegate {
+class BillDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet weak var whatsItFor:UILabel!
     @IBOutlet weak var payToPerson:UILabel!
-    @IBOutlet weak var isPaid:UILabel!
+    @IBOutlet weak var isPaid:UISwitch!
     @IBOutlet weak var amount:UILabel!
     @IBOutlet weak var dueDate:UILabel!
-    var addEditDelegate:BillsAddEditDelegate?
-    var billsTableViewDelegate:ClassBTVDelegate?
+    @IBOutlet weak var datePicker:UIDatePicker!
+
     weak var bill:BillItem?
     var newBill:BillItem?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         let dateFormatter = DateFormatter()
@@ -30,11 +26,9 @@ class BillDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
             whatsItFor.text = item.title
             payToPerson.text = item.payToPerson
             if item.isPaid {
-                isPaid.text = "Is paid"
-            } else {
-                isPaid.text = "Is not paid"
+                isPaid.isOn = item.isPaid
             }
-            amount.text = "$" + String(item.amount)
+            amount.text = String(item.amount)
             if item.dueDate != nil {
                 dateFormatter.dateFormat = "MMMM d 'at' h:mm a"
                 dueDate.text = dateFormatter.string(from: item.dueDate!)
@@ -46,16 +40,38 @@ class BillDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if let bill = bill { // edit
+            bill.title = whatsItFor.text!
+            bill.payToPerson = payToPerson.text!
+            bill.isPaid = isPaid.isOn
+            bill.amount = Double(amount.text!)!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let date = dateFormatter.date(from: dueDate!.text!)
+            bill.dueDate = date
+        }
+    }
 
-    // MARK: -BillsAddEditDelegate
-    func cancelAddEditBill() {
-        dismiss(animated: true, completion: nil)
+    @IBAction func screenTapped() {
+        view.endEditing(true)
+        datePicker.isHidden = true
     }
     
-    func saveAddEditBill(_ billItem: BillItem) {
-        dismiss(animated: true, completion: nil)
-        bill = billItem
-        viewWillAppear(true)
+    @IBAction func datePickerLabelTapped() {
+        if (!datePicker.isHidden) {
+            screenTapped()
+        } else {
+            datePicker.isHidden = false
+        }
+    }
+    
+    @IBAction func datePickerChanged() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d 'at' h:mm a"
+        let strDate = dateFormatter.string(from: datePicker.date)
+        dueDate.text = strDate
+        dueDate.textColor = UIColor.black
     }
     
     
@@ -64,22 +80,5 @@ class BillDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
         textField.resignFirstResponder()
         return false
     }
-    
-    
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-        if segue.identifier == "addEditBillSegue" {
-            if let addEditBillVC = segue.destination as? BillsAddEditViewController {
-                addEditBillVC.bill = bill
-                addEditBillVC.addEditDelegate = self
-                addEditBillVC.billsTableViewDelegate = self.billsTableViewDelegate
-            }
-        }
-     }
- 
     
 }

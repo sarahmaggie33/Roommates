@@ -6,17 +6,13 @@
 //  Copyright © 2018 Sarah Ericson. All rights reserved.
 //
 
-// TODO: Create a class identical to this to keep the pay to and get paid bills
-// separate. Otherwise, use sections within the tableview to break it up
-// reconfigure addedit to send data back to the proper place.
+// TODO: allow going back to the options screen
 
 import UIKit
 
-class BillsGetPaidTableViewController: UITableViewController, ClassBTVDelegate {
+class BillsGetPaidTableViewController: UITableViewController {
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
     var billItems:[BillItem] = []
-    weak var delegate: ClassBTVDelegate?
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +25,10 @@ class BillsGetPaidTableViewController: UITableViewController, ClassBTVDelegate {
         tableView.reloadData()
     }
     
-    func saveToTableView(_ bill: BillItem) {
-        billItems.append(bill)
-        print("Saved to table view")
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
-
+    
     @IBAction func addBill() {
         billItems.insert(BillItem(), at: 0)
         tableView.insertRows(at: [IndexPath(row:0, section:0)], with: UITableView.RowAnimation.top)
@@ -54,8 +49,17 @@ class BillsGetPaidTableViewController: UITableViewController, ClassBTVDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "billCell", for: indexPath)
 
         // Configure the cell...
-        let bill = billItems[indexPath.row]
-        cell.textLabel!.text = bill.title
+        if let billItemCell = cell as? BillsItemTableViewCell {
+            let billItem = billItems[indexPath.row]
+            billItemCell.billItem = billItem
+            print(billItem.title)
+            billItemCell.titleTextField.text = billItem.title
+            if billItem.isPaid {
+                billItemCell.accessoryType = UITableViewCell.AccessoryType.checkmark
+            } else {
+                billItemCell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+            }
+        }
         return cell
     }
 
@@ -81,9 +85,10 @@ class BillsGetPaidTableViewController: UITableViewController, ClassBTVDelegate {
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        let rowToMove = billItems[fromIndexPath.row]
+        billItems.remove(at: fromIndexPath.row)
+        billItems.insert(rowToMove, at: to.row)
     }
-
     
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -103,10 +108,6 @@ class BillsGetPaidTableViewController: UITableViewController, ClassBTVDelegate {
         if segue.identifier == "showDetailSegue" {
             if let destinationVC = segue.destination as?  BillDetailViewController {
                 destinationVC.bill = billItems[tableView.indexPathForSelectedRow!.row]
-                if let cell = sender as? UITableViewCell {
-                    destinationVC.navigationItem.title = cell.textLabel!.text!
-                }
-                destinationVC.billsTableViewDelegate = self
             }
         }
     }
