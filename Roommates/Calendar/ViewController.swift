@@ -86,7 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell")!
-        print(calendars![(indexPath as NSIndexPath).row].title)
+        print("this is the title of the calendar: " + calendars![(indexPath as NSIndexPath).row].title)
         
         // Configure the cell...
 //        if let calendarCell = cell as? CalendarCell {
