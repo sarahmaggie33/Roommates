@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var month: UILabel!
 
     
-    let outsideMonthColor = UIColor.lightGray
+    let outsideMonthColor = UIColor.black
     let monthColor = UIColor.white
     let selectedMonthColor = UIColor.black
     let currentDateSelectedViewColor = UIColor.green
@@ -26,6 +26,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController!.navigationBar.barTintColor = UIColor.blue
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 238/255, green: 173/255, blue: 30/255, alpha: 1)]
+        self.navigationController!.navigationBar.tintColor = UIColor(red: 238/255, green: 173/255, blue: 30/255, alpha: 1)
+        self.navigationController!.navigationBar.barStyle = .black
+        
         calendarView.scrollToDate(Date(), animateScroll: false)
         calendarView.selectDates([Date()])
         setupCalendarView()
@@ -122,7 +128,7 @@ extension ViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
-
+        cell?.bounce()
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -134,7 +140,13 @@ extension ViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupViewsOfCalendar(from: visibleDates)
     }
-    
+}
+extension UIView {
+    func bounce() {
+        self.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: UIView.AnimationOptions.beginFromCurrentState, animations: { self.transform = CGAffineTransform(scaleX: 1, y: 1)
+        })
+    }
 }
 
 
