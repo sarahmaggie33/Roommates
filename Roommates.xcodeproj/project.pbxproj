@@ -13,12 +13,6 @@
 		19232B87219E0892008ED6D6 /* BillItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B86219E0892008ED6D6 /* BillItem.swift */; };
 		19232B89219E0A29008ED6D6 /* BillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B88219E0A29008ED6D6 /* BillDetailViewController.swift */; };
 		1925752D21B35B05009697F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1925752C21B35B05009697F9 /* GoogleService-Info.plist */; };
-		19800FAE21ADBE5000453CDD /* AddCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FAD21ADBE5000453CDD /* AddCalendarViewController.swift */; };
-		19800FB021ADBE9900453CDD /* CalendarAddedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FAF21ADBE9900453CDD /* CalendarAddedDelegate.swift */; };
-		19800FB221ADC5AD00453CDD /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FB121ADC5AD00453CDD /* EventsViewController.swift */; };
-		19800FB421ADC5D600453CDD /* EventAddedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FB321ADC5D600453CDD /* EventAddedDelegate.swift */; };
-		19800FB621ADC61400453CDD /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FB521ADC61400453CDD /* AddEventViewController.swift */; };
-		19800FB821ADC7CF00453CDD /* SegueIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19800FB721ADC7CF00453CDD /* SegueIdentifiers.swift */; };
 		19C4A66C218662D400FF8E35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66B218662D400FF8E35 /* AppDelegate.swift */; };
 		19C4A66E218662D400FF8E35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66D218662D400FF8E35 /* ViewController.swift */; };
 		19C4A670218662D400FF8E35 /* BillsOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66F218662D400FF8E35 /* BillsOptionsViewController.swift */; };
@@ -53,6 +47,10 @@
 		19DE894C21BDBD4F00CB09CC /* Icon-App-20x20@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE893E21BDBD4E00CB09CC /* Icon-App-20x20@1x.png */; };
 		19DE894D21BDBD4F00CB09CC /* Icon-App-20x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE893F21BDBD4E00CB09CC /* Icon-App-20x20@2x.png */; };
 		19DE894F21BDBF7B00CB09CC /* house1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE894E21BDBF7B00CB09CC /* house1024x1024.png */; };
+		19DE895121BDCDCD00CB09CC /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DE895021BDCDCD00CB09CC /* CustomCell.swift */; };
+		19DE895321BDF6B800CB09CC /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE895221BDF6B700CB09CC /* menu.png */; };
+		19DE895521BDF84A00CB09CC /* menu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE895421BDF84A00CB09CC /* menu2.png */; };
+		19DE895721BDF8BC00CB09CC /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE895621BDF8BC00CB09CC /* hamburger.png */; };
 		2BC433168AEE26219146C0B6 /* Pods_Roommates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D9F9F0FC5F996A3D05A7E9 /* Pods_Roommates.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,12 +62,6 @@
 		19232B86219E0892008ED6D6 /* BillItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItem.swift; sourceTree = "<group>"; };
 		19232B88219E0A29008ED6D6 /* BillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailViewController.swift; sourceTree = "<group>"; };
 		1925752C21B35B05009697F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		19800FAD21ADBE5000453CDD /* AddCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCalendarViewController.swift; sourceTree = "<group>"; };
-		19800FAF21ADBE9900453CDD /* CalendarAddedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddedDelegate.swift; sourceTree = "<group>"; };
-		19800FB121ADC5AD00453CDD /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
-		19800FB321ADC5D600453CDD /* EventAddedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAddedDelegate.swift; sourceTree = "<group>"; };
-		19800FB521ADC61400453CDD /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
-		19800FB721ADC7CF00453CDD /* SegueIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueIdentifiers.swift; sourceTree = "<group>"; };
 		19C4A668218662D400FF8E35 /* Roommates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roommates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C4A66B218662D400FF8E35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19C4A66D218662D400FF8E35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +98,10 @@
 		19DE893E21BDBD4E00CB09CC /* Icon-App-20x20@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-20x20@1x.png"; path = "Images/Icon-App-20x20@1x.png"; sourceTree = SOURCE_ROOT; };
 		19DE893F21BDBD4E00CB09CC /* Icon-App-20x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-20x20@2x.png"; path = "Images/Icon-App-20x20@2x.png"; sourceTree = SOURCE_ROOT; };
 		19DE894E21BDBF7B00CB09CC /* house1024x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = house1024x1024.png; path = Images/house1024x1024.png; sourceTree = SOURCE_ROOT; };
+		19DE895021BDCDCD00CB09CC /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		19DE895221BDF6B700CB09CC /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = Images/menu.png; sourceTree = SOURCE_ROOT; };
+		19DE895421BDF84A00CB09CC /* menu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu2.png; path = Images/menu2.png; sourceTree = SOURCE_ROOT; };
+		19DE895621BDF8BC00CB09CC /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hamburger.png; path = Images/hamburger.png; sourceTree = SOURCE_ROOT; };
 		44B7F1A429DA2A9C673FEDE5 /* Pods-Roommates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roommates.release.xcconfig"; path = "Pods/Target Support Files/Pods-Roommates/Pods-Roommates.release.xcconfig"; sourceTree = "<group>"; };
 		C9D9F9F0FC5F996A3D05A7E9 /* Pods_Roommates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roommates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -157,13 +153,8 @@
 		198F696F2192101D002F4DE9 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				19DE895021BDCDCD00CB09CC /* CustomCell.swift */,
 				19C4A66D218662D400FF8E35 /* ViewController.swift */,
-				19800FAD21ADBE5000453CDD /* AddCalendarViewController.swift */,
-				19800FAF21ADBE9900453CDD /* CalendarAddedDelegate.swift */,
-				19800FB121ADC5AD00453CDD /* EventsViewController.swift */,
-				19800FB321ADC5D600453CDD /* EventAddedDelegate.swift */,
-				19800FB521ADC61400453CDD /* AddEventViewController.swift */,
-				19800FB721ADC7CF00453CDD /* SegueIdentifiers.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -210,6 +201,9 @@
 		19C4A68321877F6600FF8E35 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				19DE895621BDF8BC00CB09CC /* hamburger.png */,
+				19DE895421BDF84A00CB09CC /* menu2.png */,
+				19DE895221BDF6B700CB09CC /* menu.png */,
 				19DE894E21BDBF7B00CB09CC /* house1024x1024.png */,
 				19DE893E21BDBD4E00CB09CC /* Icon-App-20x20@1x.png */,
 				19DE893F21BDBD4E00CB09CC /* Icon-App-20x20@2x.png */,
@@ -327,6 +321,7 @@
 				19C4A678218662D700FF8E35 /* LaunchScreen.storyboard in Resources */,
 				19DE893121BDBCDA00CB09CC /* house@2x.png in Resources */,
 				19C4A68D21888FF700FF8E35 /* loginHouse.png in Resources */,
+				19DE895721BDF8BC00CB09CC /* hamburger.png in Resources */,
 				19DE894221BDBD4F00CB09CC /* Icon-App-29x29@3x.png in Resources */,
 				19DE894121BDBD4F00CB09CC /* Icon-App-29x29@2x.png in Resources */,
 				19DE894C21BDBD4F00CB09CC /* Icon-App-20x20@1x.png in Resources */,
@@ -337,10 +332,12 @@
 				19C4A675218662D700FF8E35 /* Assets.xcassets in Resources */,
 				19DE894F21BDBF7B00CB09CC /* house1024x1024.png in Resources */,
 				19DE894021BDBD4F00CB09CC /* Icon-App-76x76@1x.png in Resources */,
+				19DE895521BDF84A00CB09CC /* menu2.png in Resources */,
 				19DE894A21BDBD4F00CB09CC /* Icon-App-83.5x83.5@2x.png in Resources */,
 				19DE894D21BDBD4F00CB09CC /* Icon-App-20x20@2x.png in Resources */,
 				19DE894721BDBD4F00CB09CC /* Icon-App-40x40@3x.png in Resources */,
 				19DE894421BDBD4F00CB09CC /* Icon-App-60x60@3x.png in Resources */,
+				19DE895321BDF6B800CB09CC /* menu.png in Resources */,
 				19C4A673218662D400FF8E35 /* Main.storyboard in Resources */,
 				1925752D21B35B05009697F9 /* GoogleService-Info.plist in Resources */,
 				19DE894821BDBD4F00CB09CC /* Icon-App-29x29@1x.png in Resources */,
@@ -412,6 +409,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -425,6 +423,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -441,7 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19800FB821ADC7CF00453CDD /* SegueIdentifiers.swift in Sources */,
+				19DE895121BDCDCD00CB09CC /* CustomCell.swift in Sources */,
 				19D403AA21B3796700C416CA /* Constants.swift in Sources */,
 				19C4A670218662D400FF8E35 /* BillsOptionsViewController.swift in Sources */,
 				19C4A6912188CC5B00FF8E35 /* ListItem.swift in Sources */,
@@ -453,14 +452,9 @@
 				19D403AF21B4429700C416CA /* LoginViewController.swift in Sources */,
 				19C4A6932188CCF300FF8E35 /* ListItemTableViewCell.swift in Sources */,
 				1910380521B73804001F07F3 /* BillsItemTableViewCell.swift in Sources */,
-				19800FB621ADC61400453CDD /* AddEventViewController.swift in Sources */,
-				19800FB221ADC5AD00453CDD /* EventsViewController.swift in Sources */,
 				19C4A6952188CEAB00FF8E35 /* ListItemDetailViewController.swift in Sources */,
 				19C4A6822187747500FF8E35 /* ChatViewController.swift in Sources */,
 				1910380321B731C6001F07F3 /* BillsPaySomeoneTableViewController.swift in Sources */,
-				19800FAE21ADBE5000453CDD /* AddCalendarViewController.swift in Sources */,
-				19800FB421ADC5D600453CDD /* EventAddedDelegate.swift in Sources */,
-				19800FB021ADBE9900453CDD /* CalendarAddedDelegate.swift in Sources */,
 				19C4A68F2188CC0D00FF8E35 /* ListTableViewController.swift in Sources */,
 				19C4A66E218662D400FF8E35 /* ViewController.swift in Sources */,
 			);

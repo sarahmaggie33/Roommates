@@ -7,143 +7,134 @@
 //
 
 import UIKit
-import EventKit
+import JTAppleCalendar
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CalendarAddedDelegate {
+class ViewController: UIViewController {
+    @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var year: UILabel!
+    @IBOutlet weak var month: UILabel!
+
     
-    @IBOutlet weak var needPermissionView: UIView!
-    @IBOutlet weak var calendarsTableView: UITableView!
+    let outsideMonthColor = UIColor.lightGray
+    let monthColor = UIColor.white
+    let selectedMonthColor = UIColor.black
+    let currentDateSelectedViewColor = UIColor.green
     
-    var calendars: [EKCalendar]?
+    let formatter = DateFormatter()
+    
+    let todaysDate = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkCalendarAuthorizationStatus()
-        
+        calendarView.scrollToDate(Date(), animateScroll: false)
+        calendarView.selectDates([Date()])
+        setupCalendarView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        checkCalendarAuthorizationStatus()
-    }
-    
-    func checkCalendarAuthorizationStatus() {
-        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
+    func setupCalendarView() {
+        // Setup calendar spacing
+        calendarView.minimumLineSpacing = 0
+        calendarView.minimumInteritemSpacing = 0
         
-        switch (status) {
-        case EKAuthorizationStatus.notDetermined:
-            // This happens on first-run
-            requestAccessToCalendar()
-        case EKAuthorizationStatus.authorized:
-            // Things are in line with being able to show the calendars in the table view
-            loadCalendars()
-            refreshTableView()
-        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied:
-            // We need to help them give us permission
-            needPermissionView.fadeIn()
+        // Setup labels
+        calendarView.visibleDates { (visibleDates) in
+            self.setupViewsOfCalendar(from: visibleDates)
         }
     }
     
-    func requestAccessToCalendar() {
-        EKEventStore().requestAccess(to: .event, completion: {
-            (accessGranted: Bool, error: Error?) in
-            
-            if accessGranted == true {
-                DispatchQueue.main.async(execute: {
-                    self.loadCalendars()
-                    self.refreshTableView()
-                })
-            } else {
-                DispatchQueue.main.async(execute: {
-                    self.needPermissionView.fadeIn()
-                })
-            }
-        })
-    }
-    
-    func loadCalendars() {
-        self.calendars = EKEventStore().calendars(for: EKEntityType.event).sorted() { (cal1, cal2) -> Bool in
-            return cal1.title < cal2.title
-        }
-    }
-    
-    func refreshTableView() {
-        calendarsTableView.isHidden = false
-        calendarsTableView.reloadData()
-    }
-    
-    @IBAction func goToSettingsButtonTapped(_ sender: UIButton) {
-        let openSettingsUrl = URL(string: UIApplication.openSettingsURLString)
-        UIApplication.shared.openURL(openSettingsUrl!)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let calendars = self.calendars {
-            return calendars.count
-        }
-        return 0
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell")!
-        print("this is the title of the calendar: " + calendars![(indexPath as NSIndexPath).row].title)
+    func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
         
-        // Configure the cell...
-//        if let calendarCell = cell as? CalendarCell {
-//            let listItem = listItems[indexPath.row]
-//            listItemCell.listItem = listItem
-//            print(listItem.title)
-//            listItemCell.titleTextField.text = listItem.title
-//        }
+        guard let validCell = view as? CustomCell else{
+            return
+        }
         
-        if let calendars = self.calendars {
-            let calendarName = calendars[(indexPath as NSIndexPath).row].title
-//            calendarName = "pizza"
-            cell.textLabel?.text = calendarName
-            print(calendarName)
+        formatter.dateFormat = "yyyy MM dd"
+        let todaysDateString = formatter.string(from: todaysDate)
+        let monthDateString = formatter.string(from: cellState.date)
+        
+        if todaysDateString == monthDateString {
+            validCell.dateLabel.textColor = UIColor.green
         } else {
-            cell.textLabel?.text = "Unknown Calendar Name"
+            if cellState.isSelected {
+                validCell.dateLabel.textColor = selectedMonthColor
+            } else {
+                if cellState.dateBelongsTo == .thisMonth {
+                    validCell.dateLabel.textColor = monthColor
+                } else {
+                    validCell.dateLabel.textColor = outsideMonthColor
+                }
+            }
         }
+    }
+    
+    func handleCellSelected(view: JTAppleCell?, cellState: CellState) {
+        guard let validCell = view as? CustomCell else { return }
+        if cellState.isSelected {
+            validCell.selectedView.isHidden = false
+        } else {
+            validCell.selectedView.isHidden = true
+        }
+    }
+    
+    func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
+        let date = visibleDates.monthDates.first!.date
+        self.formatter.dateFormat = "yyyy"
+        self.year.text = self.formatter.string(from: date)
         
+        self.formatter.dateFormat = "MMMM"
+        self.month.text = self.formatter.string(from: date)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+}
+extension ViewController: JTAppleCalendarViewDataSource {
+   
+    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        formatter.dateFormat = "yyyy MM dd"
+        formatter.timeZone = Calendar.current.timeZone
+        formatter.locale = Calendar.current.locale
+        
+        let startDate = formatter.date(from: "2017 01 01")!
+        let endDate = formatter.date(from: "2020 12 31")!
+        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
+        return parameters
+    }
+
+}
+
+extension ViewController: JTAppleCalendarViewDelegate {
+    // Display the cell
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+        print(":)")
+
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCell
+        cell.dateLabel.text = cellState.text
+        handleCellSelected(view: cell, cellState: cellState)
+        handleCellTextColor(view: cell, cellState: cellState)
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
-            switch identifier {
-            case SegueIdentifiers.showAddCalendarSegue:
-                let destinationVC = segue.destination as! UINavigationController
-                let addCalendarVC = destinationVC.viewControllers[0] as! AddCalendarViewController
-                addCalendarVC.delegate = self
-            case SegueIdentifiers.showEventsSegue:
-                //                let destinationVC = segue.destinationViewController as! UINavigationController
-                let eventsVC = segue.destination as! EventsViewController
-                let selectedIndexPath = calendarsTableView.indexPathForSelectedRow!
-                
-                eventsVC.calendar = calendars?[(selectedIndexPath as NSIndexPath).row]
-            default: break
-            }
-        }
-    }
-    
-    // MARK: Calendar Added Delegate
-    func calendarDidAdd() {
-        self.loadCalendars()
-        self.refreshTableView()
-    }
-}
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        handleCellSelected(view: cell, cellState: cellState)
+        handleCellTextColor(view: cell, cellState: cellState)
 
-extension UIView {
-    func fadeIn(_ duration: TimeInterval = 1.0, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
-        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            self.alpha = 1.0
-        }, completion: completion)  }
-    
-    func fadeOut(_ duration: TimeInterval = 1.0, delay: TimeInterval = 0.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
-        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            self.alpha = 0.0
-        }, completion: completion)
     }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        handleCellSelected(view: cell, cellState: cellState)
+        handleCellTextColor(view: cell, cellState: cellState)
+
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        setupViewsOfCalendar(from: visibleDates)
+    }
+    
 }
 
 

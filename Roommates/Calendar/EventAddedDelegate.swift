@@ -1,3 +1,0 @@
-protocol EventAddedDelegate {
-    func eventDidAdd()
-}

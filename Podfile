@@ -14,5 +14,6 @@ target 'Roommates' do
   pod 'Crashlytics'
   pod 'Firebase/RemoteConfig'
   pod 'Firebase/Invites'
+  pod 'JTAppleCalendar'
 
 end
