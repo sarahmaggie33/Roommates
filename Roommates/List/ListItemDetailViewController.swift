@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
@@ -63,7 +64,38 @@ class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITex
                 print("setting item.date")
             }
             item.isCompleted = completedSwitch.isOn
+        
+            let ref = Database.database().reference()
+            let key = ref.child("list").childByAutoId().key
+            var dictionaryList:NSDictionary = [:]
+            if item.date == nil && item.notes == nil {
+                dictionaryList = [ "title" : item.title,
+                                                    "notes" : "",
+                                                    "dueDate" : "none",
+                                                    "isCompleted" : item.isCompleted]
+            } else if item.date == nil {
+                dictionaryList = [ "title" : item.title,
+                                   "notes" : item.notes!,
+                                   "dueDate" : "none",
+                                   "isCompleted" : item.isCompleted]
+            } else if item.date == nil && item.notes == nil {
+                dictionaryList = [ "title" : item.title,
+                                   "notes" : "",
+                                   "dueDate" : item.date!,
+                                   "isCompleted" : item.isCompleted]
+            } else {
+                dictionaryList = [ "title" : item.title,
+                                                    "notes" : item.notes!,
+                                                    "dueDate" : item.date!,
+                                                    "isCompleted" : item.isCompleted]
+            }
+            
+            ref.child("users/\(key)/username").setValue(dictionaryList)
+
+//            let childUpdates = ["/list/\(key))": dictionaryList]
+//            ref.updateChildValues(childUpdates)
         }
+
     }
     
     @IBAction func screenTapped() {

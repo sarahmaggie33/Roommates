@@ -51,6 +51,7 @@
 		19DE895321BDF6B800CB09CC /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE895221BDF6B700CB09CC /* menu.png */; };
 		19DE895521BDF84A00CB09CC /* menu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE895421BDF84A00CB09CC /* menu2.png */; };
 		19DE895721BDF8BC00CB09CC /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE895621BDF8BC00CB09CC /* hamburger.png */; };
+		19DE895921BEA9E700CB09CC /* whiteDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE895821BEA9E700CB09CC /* whiteDot.png */; };
 		2BC433168AEE26219146C0B6 /* Pods_Roommates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D9F9F0FC5F996A3D05A7E9 /* Pods_Roommates.framework */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +103,7 @@
 		19DE895221BDF6B700CB09CC /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = Images/menu.png; sourceTree = SOURCE_ROOT; };
 		19DE895421BDF84A00CB09CC /* menu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu2.png; path = Images/menu2.png; sourceTree = SOURCE_ROOT; };
 		19DE895621BDF8BC00CB09CC /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hamburger.png; path = Images/hamburger.png; sourceTree = SOURCE_ROOT; };
+		19DE895821BEA9E700CB09CC /* whiteDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteDot.png; path = Images/whiteDot.png; sourceTree = SOURCE_ROOT; };
 		44B7F1A429DA2A9C673FEDE5 /* Pods-Roommates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roommates.release.xcconfig"; path = "Pods/Target Support Files/Pods-Roommates/Pods-Roommates.release.xcconfig"; sourceTree = "<group>"; };
 		C9D9F9F0FC5F996A3D05A7E9 /* Pods_Roommates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roommates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -201,6 +203,7 @@
 		19C4A68321877F6600FF8E35 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				19DE895821BEA9E700CB09CC /* whiteDot.png */,
 				19DE895621BDF8BC00CB09CC /* hamburger.png */,
 				19DE895421BDF84A00CB09CC /* menu2.png */,
 				19DE895221BDF6B700CB09CC /* menu.png */,
@@ -333,6 +336,7 @@
 				19DE894F21BDBF7B00CB09CC /* house1024x1024.png in Resources */,
 				19DE894021BDBD4F00CB09CC /* Icon-App-76x76@1x.png in Resources */,
 				19DE895521BDF84A00CB09CC /* menu2.png in Resources */,
+				19DE895921BEA9E700CB09CC /* whiteDot.png in Resources */,
 				19DE894A21BDBD4F00CB09CC /* Icon-App-83.5x83.5@2x.png in Resources */,
 				19DE894D21BDBD4F00CB09CC /* Icon-App-20x20@2x.png in Resources */,
 				19DE894721BDBD4F00CB09CC /* Icon-App-40x40@3x.png in Resources */,

@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class ListTableViewController: UITableViewController {
-    
+    var ref: DatabaseReference!
+    fileprivate var _refHandle: DatabaseHandle?
+
     var listItems:[ListItem] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,10 +22,35 @@ class ListTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // Set the color for the navigation bar
+        self.navigationController!.navigationBar.barTintColor = UIColor.blue
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 238/255, green: 173/255, blue: 30/255, alpha: 1)]
+        self.navigationController!.navigationBar.tintColor = UIColor(red: 238/255, green: 173/255, blue: 30/255, alpha: 1)
+        self.navigationController!.navigationBar.barStyle = .black
+        
+        // set the table color
+        view.backgroundColor = UIColor.black
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        configureDatabase()
         tableView.reloadData()
+    }
+    
+    deinit {
+        if let refHandle = _refHandle  {
+            self.ref.child("list").removeObserver(withHandle: refHandle)
+        }
+    }
+    
+    func configureDatabase() {
+        ref = Database.database().reference()
+        // Listen for new messages in the Firebase database
+//        _refHandle = self.ref.child("list").observe(.childAdded, with: { [weak self] (snapshot) -> Void in
+//            guard let strongSelf = self else { return }
+//            strongSelf.list.append(snapshot)
+//        })
     }
     
     // MARK: - Table view data source

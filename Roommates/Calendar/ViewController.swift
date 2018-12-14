@@ -9,32 +9,62 @@
 import UIKit
 import JTAppleCalendar
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var year: UILabel!
     @IBOutlet weak var month: UILabel!
-
+    @IBOutlet weak var eventsTable: UITableView!
+    @IBOutlet weak var todayButton: UIButton!
+    var eventsDictionary:[Date:[String]]!
+    var dateSelected:Date!
     
     let outsideMonthColor = UIColor.black
     let monthColor = UIColor.white
     let selectedMonthColor = UIColor.black
-    let currentDateSelectedViewColor = UIColor.green
+    let currentDateSelectedViewColor = UIColor.cyan
     
     let formatter = DateFormatter()
     
     let todaysDate = Date()
     
+    var eventsFromTheServer: [String: [String]] = [:]
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.eventsTable.backgroundColor = UIColor.black
+
+        // Set the color for the navigation bar
         self.navigationController!.navigationBar.barTintColor = UIColor.blue
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 238/255, green: 173/255, blue: 30/255, alpha: 1)]
         self.navigationController!.navigationBar.tintColor = UIColor(red: 238/255, green: 173/255, blue: 30/255, alpha: 1)
         self.navigationController!.navigationBar.barStyle = .black
         
+        // Fetch the data from the server
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+            let serverObjects = self.getServerEvents()
+            self.eventsDictionary = self.getServerEvents()
+            for (date, event) in serverObjects {
+                let stringDate = self.formatter.string(from: date)
+                self.eventsFromTheServer[stringDate] = event
+                print(event)
+            }
+            
+            DispatchQueue.main.async {
+                self.calendarView.reloadData()
+                self.eventsTable.reloadData()
+                print("the events are in the calendar")
+            }
+        }
+        
         calendarView.scrollToDate(Date(), animateScroll: false)
         calendarView.selectDates([Date()])
         setupCalendarView()
+    }
+    
+    @IBAction func scrollToToday() {
+        calendarView.scrollToDate(Date(), animateScroll: false)
+        calendarView.selectDates([Date()])
     }
     
     func setupCalendarView() {
@@ -48,6 +78,16 @@ class ViewController: UIViewController {
         }
     }
     
+    func configureCell(cell: JTAppleCell?, cellState: CellState) {
+        guard let customCell = cell as? CustomCell else { return }
+        formatter.dateFormat = "yyyy MM dd"
+        handleCellEvents(cell: customCell, cellState: cellState)
+    }
+    
+    func handleCellEvents(cell: CustomCell, cellState: CellState) {
+        cell.eventDotView.isHidden = !eventsFromTheServer.contains{$0.key == formatter.string(from: cellState.date)}
+    }
+    
     func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
         
         guard let validCell = view as? CustomCell else{
@@ -59,7 +99,7 @@ class ViewController: UIViewController {
         let monthDateString = formatter.string(from: cellState.date)
         
         if todaysDateString == monthDateString {
-            validCell.dateLabel.textColor = UIColor.green
+            validCell.dateLabel.textColor = UIColor.cyan
         } else {
             if cellState.isSelected {
                 validCell.dateLabel.textColor = selectedMonthColor
@@ -102,6 +142,7 @@ extension ViewController: JTAppleCalendarViewDataSource {
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
+        print("configuring the calendar")
         let startDate = formatter.date(from: "2017 01 01")!
         let endDate = formatter.date(from: "2020 12 31")!
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
@@ -113,13 +154,14 @@ extension ViewController: JTAppleCalendarViewDataSource {
 extension ViewController: JTAppleCalendarViewDelegate {
     // Display the cell
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        print(":)")
-
+        print("")
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCell
         cell.dateLabel.text = cellState.text
+        configureCell(cell: cell, cellState: cellState)
+        eventsTable.reloadData()
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
         return cell
@@ -129,6 +171,11 @@ extension ViewController: JTAppleCalendarViewDelegate {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
         cell?.bounce()
+        
+        // set up the tableview for the calendar cell that was selected
+        dateSelected = date
+        eventsTable.reloadData()
+        
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -140,12 +187,58 @@ extension ViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupViewsOfCalendar(from: visibleDates)
     }
+    
+    // UITableViewDataSource protocol methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (eventsDictionary == nil) {
+            return 0;
+        } else if (!eventsDictionary.keys.contains(dateSelected)) {
+            return 0;
+        } else {
+            let events = eventsDictionary[dateSelected]
+            let numEvents = events!.count
+            print("events on this day: \(numEvents)")
+            return numEvents
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Dequeue cell
+        let cell = self.eventsTable.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
+        
+        if (eventsDictionary != nil) {
+            print("index: \(indexPath.row)")
+            let eventsOnThisDay = eventsDictionary[dateSelected]
+            cell.textLabel?.text = eventsOnThisDay![indexPath.row]
+        }
+        cell.textLabel?.textColor = UIColor.white
+        return cell
+    }
 }
+
+// Create the bounce animation
 extension UIView {
     func bounce() {
         self.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: UIView.AnimationOptions.beginFromCurrentState, animations: { self.transform = CGAffineTransform(scaleX: 1, y: 1)
         })
+    }
+}
+
+extension ViewController {
+    func getServerEvents() -> [Date:[String]] {
+        formatter.dateFormat = "yyyy MM dd"
+        return [
+            formatter.date(from: "2018 06 02")!: ["Happy Birthday"],
+            formatter.date(from: "2018 06 30")!: ["Connor's Birthday"],
+            formatter.date(from: "2018 01 01")!: ["Happy New Year!"],
+            formatter.date(from: "2018 12 25")!: ["Merry Christmas"],
+            formatter.date(from: "2018 02 14")!: ["Happy Valentine's Day"],
+            formatter.date(from: "2018 03 17")!: ["Happy St. Patrick's Day"],
+            formatter.date(from: "2018 12 14")!: ["The last day of classes", "Party"],
+            formatter.date(from: "2019 01 01")!: ["Happy New Year!"],
+
+        ]
     }
 }
 

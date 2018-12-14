@@ -31,6 +31,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set the color for the navigation bar
+        self.navigationController!.navigationBar.barTintColor = UIColor.blue
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 238/255, green: 173/255, blue: 30/255, alpha: 1)]
+        self.navigationController!.navigationBar.tintColor = UIColor(red: 238/255, green: 173/255, blue: 30/255, alpha: 1)
+        self.navigationController!.navigationBar.barStyle = .black
+        
         self.clientTable.register(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
         
         configureDatabase()
