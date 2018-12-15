@@ -8,6 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
+import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var calendarView: JTAppleCalendarView!
@@ -41,7 +42,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationController!.navigationBar.barStyle = .black
         
         // Fetch the data from the server
-        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             let serverObjects = self.getServerEvents()
             self.eventsDictionary = self.getServerEvents()
             for (date, event) in serverObjects {
@@ -228,7 +229,10 @@ extension UIView {
 extension ViewController {
     func getServerEvents() -> [Date:[String]] {
         formatter.dateFormat = "yyyy MM dd"
-        return [
+        
+        var events:[Date:[String]] = [:]
+        var fetchResults:[Any] = []
+        var presetEvents:[Date:[String]] = [
             formatter.date(from: "2018 06 02")!: ["Happy Birthday"],
             formatter.date(from: "2018 06 30")!: ["Connor's Birthday"],
             formatter.date(from: "2018 01 01")!: ["Happy New Year!"],
@@ -237,8 +241,48 @@ extension ViewController {
             formatter.date(from: "2018 03 17")!: ["Happy St. Patrick's Day"],
             formatter.date(from: "2018 12 14")!: ["The last day of classes", "Party"],
             formatter.date(from: "2019 01 01")!: ["Happy New Year!"],
-
-        ]
+            
+            ]
+        
+        let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let moc: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest:NSFetchRequest = NSFetchRequest<ListItem>(entityName: "ListItem")
+        let sortByName:NSSortDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
+        fetchRequest.sortDescriptors = [sortByName]
+        do {
+            fetchResults = try moc.fetch(fetchRequest)
+                for data in fetchResults as! [NSManagedObject] {
+                    if (data.value(forKey: "dueDate") as? Date != nil) { // if the date isn't nil
+                        let title:String = data.value(forKey: "title") as! String
+                        var date:Date = data.value(forKey: "dueDate") as! Date
+                        date = removeTimeStamp(fromDate: date)
+                        print("Printing event:  \(data.value(forKey: "title") as! String)")
+                        print("Printing date:  \(data.value(forKey: "dueDate") as! Date)")
+                        events[date] = [title]
+//                        events?.updateValue([title], forKey: date)
+                    }
+                    
+                }
+            
+//            NSMutableArray(array: fetchResults).
+//            events = NSMutableArray(array: fetchResults) as! [ListItem]
+        } catch {
+            print("Error executing fetch request with request: \(fetchRequest)")
+        }
+        
+        print("There are this many list events: \(events.count)")
+        print("Events: \(events.first)")
+        
+        let eventsAll = presetEvents.merging(events, uniquingKeysWith: { (first, _) in first })
+        return eventsAll
+    }
+    
+    public func removeTimeStamp(fromDate: Date) -> Date {
+        guard let date = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: fromDate)) else {
+            fatalError("Failed to strip time from Date object")
+        }
+        return date
     }
 }
 
