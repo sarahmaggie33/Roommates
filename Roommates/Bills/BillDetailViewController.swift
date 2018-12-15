@@ -32,16 +32,16 @@ class BillDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
             if item.dueDate != nil {
                 dateFormatter.dateFormat = "MMMM d 'at' h:mm a"
                 dueDate.text = dateFormatter.string(from: item.dueDate!)
-                dueDate.textColor = UIColor.black
-                dueDate.isHidden = false
+                dueDate.textColor = UIColor.white
             } else {
+                dueDate.textColor = UIColor.white
                 dueDate.text = "No due date"
             }
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if let bill = bill { // edit
+        if let bill = bill {
             bill.title = whatsItFor.text!
             bill.payToPerson = payToPerson.text!
             bill.isPaid = isPaid.isOn
@@ -49,6 +49,7 @@ class BillDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let date = dateFormatter.date(from: dueDate!.text!)
+            print("The date is \(date)")
             bill.dueDate = date
         }
     }
@@ -63,6 +64,7 @@ class BillDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
             screenTapped()
         } else {
             datePicker.isHidden = false
+            datePicker.backgroundColor = UIColor.white
         }
     }
     
@@ -71,7 +73,7 @@ class BillDetailViewController: UIViewController, UITextFieldDelegate, UITextVie
         dateFormatter.dateFormat = "MMMM d 'at' h:mm a"
         let strDate = dateFormatter.string(from: datePicker.date)
         dueDate.text = strDate
-        dueDate.textColor = UIColor.black
+        dueDate.textColor = UIColor.white
     }
     
     

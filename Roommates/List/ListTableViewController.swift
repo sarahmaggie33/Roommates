@@ -8,10 +8,11 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class ListTableViewController: UITableViewController {
-    var ref: DatabaseReference!
-    fileprivate var _refHandle: DatabaseHandle?
+//    var ref: DatabaseReference!
+//    fileprivate var _refHandle: DatabaseHandle?
 
     var listItems:[ListItem] = []
     override func viewDidLoad() {
@@ -31,32 +32,38 @@ class ListTableViewController: UITableViewController {
         
         // set the table color
         view.backgroundColor = UIColor.black
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        configureDatabase()
-        tableView.reloadData()
-    }
-    
-    deinit {
-        if let refHandle = _refHandle  {
-            self.ref.child("list").removeObserver(withHandle: refHandle)
+        
+        // get ListItems from CoreData
+        if (listItems == []) {
+            var fetchResults:[Any] = []
+            
+            let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            let moc: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest:NSFetchRequest = NSFetchRequest<ListItem>(entityName: "ListItem")
+            let sortByName:NSSortDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
+            fetchRequest.sortDescriptors = [sortByName]
+            do {
+                fetchResults = try moc.fetch(fetchRequest)
+                listItems = NSMutableArray(array: fetchResults) as! [ListItem]
+            } catch {
+                print("Error executing fetch request with request: \(fetchRequest)")
+            }
+        } else {
+            tableView.reloadData()
         }
     }
     
-    func configureDatabase() {
-        ref = Database.database().reference()
-        // Listen for new messages in the Firebase database
-//        _refHandle = self.ref.child("list").observe(.childAdded, with: { [weak self] (snapshot) -> Void in
-//            guard let strongSelf = self else { return }
-//            strongSelf.list.append(snapshot)
-//        })
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
     
     @IBAction func addListItem() {
-        listItems.insert(ListItem(), at: 0)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        listItems.insert(NSEntityDescription.insertNewObject(forEntityName: "ListItem", into: context) as! ListItem, at: 0)
         tableView.insertRows(at: [IndexPath(row:0, section:0)], with: UITableView.RowAnimation.top)
     }
     
@@ -99,9 +106,13 @@ class ListTableViewController: UITableViewController {
      // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
          if editingStyle == .delete {
-            // Delete the row from the data source
-            listItems.remove(at: indexPath.row)
+            let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            let moc: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+            // Delete item from the managed object context
+            let item:ListItem = listItems[indexPath.row]
+            moc.delete(item)
             // Delete the row from the TableView
+            listItems.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
          } else if editingStyle == .insert {
          // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -136,6 +147,7 @@ class ListTableViewController: UITableViewController {
         if segue.identifier == "showDetailSegue" {
             if let destinationVC = segue.destination as? ListItemDetailViewController {
                 destinationVC.listItem = listItems[tableView.indexPathForSelectedRow!.row]
+                destinationVC.listTVC = self
             }
         }
     }

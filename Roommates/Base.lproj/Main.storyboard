@@ -46,7 +46,7 @@
                                             <rect key="frame" x="16" y="3" width="325" height="21"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             <connections>
                                                 <outlet property="delegate" destination="9fQ-Cc-dZn" id="JhG-gD-b8D"/>
                                             </connections>
@@ -394,7 +394,7 @@
                                             <rect key="frame" x="16" y="6" width="317" height="24"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -638,7 +638,7 @@
                                     <!--2018-11-13 19:34:56 +0000-->
                                 </date>
                                 <connections>
-                                    <action selector="datePickerChanged" destination="Lw3-aB-Ms9" eventType="editingChanged" id="fqC-TP-AEY"/>
+                                    <action selector="datePickerChanged" destination="Lw3-aB-Ms9" eventType="valueChanged" id="mJz-cV-v1S"/>
                                 </connections>
                             </datePicker>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jHT-oR-pc4">
@@ -948,7 +948,7 @@
                                             <rect key="frame" x="22" y="6" width="319" height="24"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

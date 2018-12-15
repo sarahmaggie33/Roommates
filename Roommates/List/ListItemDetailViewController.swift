@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
@@ -17,6 +18,7 @@ class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var selectedDate:UILabel!
     @IBOutlet weak var datePicker:UIDatePicker!
     @IBOutlet weak var dueDate:UILabel!
+    weak var listTVC:ListTableViewController?
     weak var listItem:ListItem?
     
     
@@ -38,11 +40,11 @@ class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITex
         if let item = listItem {
             navigationItem.title = item.title
             titleTextField.text = item.title
-            if item.date != nil {
+            if item.dueDate != nil {
                 dateFormatter.dateFormat = "MMMM d 'at' h:mm a"
-                print("This is the item.date = " + dateFormatter.string(from: item.date!))
-                selectedDate.text = dateFormatter.string(from: item.date!)
-                selectedDate.textColor = UIColor.black
+                print("This is the item.date = " + dateFormatter.string(from: item.dueDate!))
+                selectedDate.text = dateFormatter.string(from: item.dueDate!)
+                selectedDate.textColor = UIColor.white
                 selectedDate.isHidden = false
             }
             if item.notes != nil {
@@ -59,41 +61,28 @@ class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITex
             if notesTextView.text != "Item Notes" && notesTextView.text != "" {
                 item.notes = notesTextView.text
             }
-            if item.date == nil && selectedDate.text != "None" {
-                item.date = datePicker.date
+            if item.dueDate == nil && selectedDate.text != "None" {
+                item.dueDate = datePicker.date
                 print("setting item.date")
             }
             item.isCompleted = completedSwitch.isOn
         
-            let ref = Database.database().reference()
-            let key = ref.child("list").childByAutoId().key
-            var dictionaryList:NSDictionary = [:]
-            if item.date == nil && item.notes == nil {
-                dictionaryList = [ "title" : item.title,
-                                                    "notes" : "",
-                                                    "dueDate" : "none",
-                                                    "isCompleted" : item.isCompleted]
-            } else if item.date == nil {
-                dictionaryList = [ "title" : item.title,
-                                   "notes" : item.notes!,
-                                   "dueDate" : "none",
-                                   "isCompleted" : item.isCompleted]
-            } else if item.date == nil && item.notes == nil {
-                dictionaryList = [ "title" : item.title,
-                                   "notes" : "",
-                                   "dueDate" : item.date!,
-                                   "isCompleted" : item.isCompleted]
-            } else {
-                dictionaryList = [ "title" : item.title,
-                                                    "notes" : item.notes!,
-                                                    "dueDate" : item.date!,
-                                                    "isCompleted" : item.isCompleted]
+            // get ToDoItems from CoreData
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            var fetchResults:[Any] = []
+            
+            let fetchRequest:NSFetchRequest = NSFetchRequest<ListItem>(entityName: "ListItem")
+            let sortByName:NSSortDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
+            fetchRequest.sortDescriptors = [sortByName]
+            do {
+                fetchResults = try context.fetch(fetchRequest)
+                listTVC!.listItems = NSMutableArray(array: fetchResults) as! [ListItem]
+            } catch {
+                print("Error executing fetch request with request: \(fetchRequest)")
             }
             
-            ref.child("users/\(key)/username").setValue(dictionaryList)
-
-//            let childUpdates = ["/list/\(key))": dictionaryList]
-//            ref.updateChildValues(childUpdates)
         }
 
     }
@@ -108,6 +97,7 @@ class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITex
             screenTapped()
         } else {
             datePicker.isHidden = false
+            datePicker.backgroundColor = UIColor.white
         }
     }
     
@@ -116,7 +106,7 @@ class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITex
         dateFormatter.dateFormat = "MMMM d 'at' h:mm a"
         let strDate = dateFormatter.string(from: datePicker.date)
         selectedDate.text = strDate
-        selectedDate.textColor = UIColor.black
+        selectedDate.textColor = UIColor.white
     }
     
     // MARK: - Text Field
@@ -129,7 +119,7 @@ class ListItemDetailViewController: UIViewController, UITextFieldDelegate, UITex
     func textViewDidBeginEditing(_ textView: UITextView) {
         if notesTextView.text == "Item Notes" {
             notesTextView.text = ""
-            notesTextView.textColor = UIColor.black
+            notesTextView.textColor = UIColor.white
         }
     }
     

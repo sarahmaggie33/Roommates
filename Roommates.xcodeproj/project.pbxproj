@@ -13,6 +13,7 @@
 		19232B87219E0892008ED6D6 /* BillItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B86219E0892008ED6D6 /* BillItem.swift */; };
 		19232B89219E0A29008ED6D6 /* BillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19232B88219E0A29008ED6D6 /* BillDetailViewController.swift */; };
 		1925752D21B35B05009697F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1925752C21B35B05009697F9 /* GoogleService-Info.plist */; };
+		19A76E6921C58DDC0049FB93 /* ListCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19A76E6621C58DDC0049FB93 /* ListCoreData.xcdatamodeld */; };
 		19C4A66C218662D400FF8E35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66B218662D400FF8E35 /* AppDelegate.swift */; };
 		19C4A66E218662D400FF8E35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66D218662D400FF8E35 /* ViewController.swift */; };
 		19C4A670218662D400FF8E35 /* BillsOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A66F218662D400FF8E35 /* BillsOptionsViewController.swift */; };
@@ -23,7 +24,6 @@
 		19C4A68B21888FF200FF8E35 /* signupHouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C4A68A21888FF200FF8E35 /* signupHouse.png */; };
 		19C4A68D21888FF700FF8E35 /* loginHouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C4A68C21888FF700FF8E35 /* loginHouse.png */; };
 		19C4A68F2188CC0D00FF8E35 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A68E2188CC0D00FF8E35 /* ListTableViewController.swift */; };
-		19C4A6912188CC5B00FF8E35 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A6902188CC5B00FF8E35 /* ListItem.swift */; };
 		19C4A6932188CCF300FF8E35 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A6922188CCF300FF8E35 /* ListItemTableViewCell.swift */; };
 		19C4A6952188CEAB00FF8E35 /* ListItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C4A6942188CEAB00FF8E35 /* ListItemDetailViewController.swift */; };
 		19D403AA21B3796700C416CA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D403A921B3796700C416CA /* Constants.swift */; };
@@ -63,6 +63,8 @@
 		19232B86219E0892008ED6D6 /* BillItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItem.swift; sourceTree = "<group>"; };
 		19232B88219E0A29008ED6D6 /* BillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailViewController.swift; sourceTree = "<group>"; };
 		1925752C21B35B05009697F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		19A76E6721C58DDC0049FB93 /* ToDoCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoCoreData.xcdatamodel; sourceTree = "<group>"; };
+		19A76E6821C58DDC0049FB93 /* ListCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ListCoreData.xcdatamodel; sourceTree = "<group>"; };
 		19C4A668218662D400FF8E35 /* Roommates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roommates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C4A66B218662D400FF8E35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19C4A66D218662D400FF8E35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +77,6 @@
 		19C4A68A21888FF200FF8E35 /* signupHouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = signupHouse.png; path = Images/signupHouse.png; sourceTree = SOURCE_ROOT; };
 		19C4A68C21888FF700FF8E35 /* loginHouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginHouse.png; path = Images/loginHouse.png; sourceTree = SOURCE_ROOT; };
 		19C4A68E2188CC0D00FF8E35 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
-		19C4A6902188CC5B00FF8E35 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		19C4A6922188CCF300FF8E35 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		19C4A6942188CEAB00FF8E35 /* ListItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemDetailViewController.swift; sourceTree = "<group>"; };
 		19D403A921B3796700C416CA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -124,9 +125,9 @@
 			isa = PBXGroup;
 			children = (
 				19C4A68E2188CC0D00FF8E35 /* ListTableViewController.swift */,
-				19C4A6902188CC5B00FF8E35 /* ListItem.swift */,
 				19C4A6922188CCF300FF8E35 /* ListItemTableViewCell.swift */,
 				19C4A6942188CEAB00FF8E35 /* ListItemDetailViewController.swift */,
+				19A76E6621C58DDC0049FB93 /* ListCoreData.xcdatamodeld */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -447,7 +448,6 @@
 				19DE895121BDCDCD00CB09CC /* CustomCell.swift in Sources */,
 				19D403AA21B3796700C416CA /* Constants.swift in Sources */,
 				19C4A670218662D400FF8E35 /* BillsOptionsViewController.swift in Sources */,
-				19C4A6912188CC5B00FF8E35 /* ListItem.swift in Sources */,
 				19D403B121B4502300C416CA /* MeasurementHelper.swift in Sources */,
 				19232B89219E0A29008ED6D6 /* BillDetailViewController.swift in Sources */,
 				19232B87219E0892008ED6D6 /* BillItem.swift in Sources */,
@@ -460,6 +460,7 @@
 				19C4A6822187747500FF8E35 /* ChatViewController.swift in Sources */,
 				1910380321B731C6001F07F3 /* BillsPaySomeoneTableViewController.swift in Sources */,
 				19C4A68F2188CC0D00FF8E35 /* ListTableViewController.swift in Sources */,
+				19A76E6921C58DDC0049FB93 /* ListCoreData.xcdatamodeld in Sources */,
 				19C4A66E218662D400FF8E35 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -662,6 +663,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		19A76E6621C58DDC0049FB93 /* ListCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				19A76E6721C58DDC0049FB93 /* ToDoCoreData.xcdatamodel */,
+				19A76E6821C58DDC0049FB93 /* ListCoreData.xcdatamodel */,
+			);
+			currentVersion = 19A76E6721C58DDC0049FB93 /* ToDoCoreData.xcdatamodel */;
+			path = ListCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 19C4A660218662D400FF8E35 /* Project object */;
 }
